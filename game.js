@@ -144,9 +144,9 @@ function doMove(i) {
 
 function undo() {
   if (!st || won || !hist.length || !playing) return;
-  const keep = st.moves;
+  const keep = st.moves, keepHints = st.hints;
   L.restore(st, hist.pop());
-  st.moves = keep + 1;                                    // 되돌리기도 한 번으로 친다
+  st.moves = keep + 1; st.hints = keepHints;       // 힌트 벌점은 되돌리기로 지워지지 않는다                                    // 되돌리기도 한 번으로 친다
   sfx.undo(); clearHint(); render(); updateHud(); save();
 }
 
